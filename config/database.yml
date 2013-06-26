@@ -1,3 +1,4 @@
+
 # PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:
@@ -17,10 +18,12 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Muni_io_development
+  database: muni_dev
   pool: 5
-  username: Muni_io
+  username:
   password:
+  host: localhost
+  port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -46,15 +49,19 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: Muni_io_test
+  database: muni_test
   pool: 5
-  username: Muni_io
+  username:
   password:
+  host: localhost
+  port: 5432
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: Muni_io_production
+  database: muni_prod
   pool: 5
-  username: Muni_io
+  username:
   password:
+  host: localhost
+  port: 5432
