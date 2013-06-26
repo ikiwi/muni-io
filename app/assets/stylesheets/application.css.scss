@@ -1,5 +1,5 @@
-@import "compass/reset";
-@import "compass/css3";
+@import "bourbon";
+@import "reset";
 @import "helpers";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
@@ -9,16 +9,17 @@ $fontCustom: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 html {
   background: #212225;
+  color: white;
 }
 
 /* select */
 
 div.slt {
   @include background-image(linear-gradient(white, #f1f5f8));
-  @include border-radius(5px);
   @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1), inset 0 1px 0 0 #fff);
   @include box-sizing;
   border: 1px solid #101112;
+  border-radius: 5px;
   cursor: pointer;
   height: 30px;
   overflow: hidden;
