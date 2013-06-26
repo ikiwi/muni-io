@@ -1,6 +1,75 @@
 @import "compass/reset";
 @import "compass/css3";
+@import "helpers";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
-body {
-  @include background-image(linear-gradient(#f00,#ff0));
+$fontCustom: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* build */
+
+html {
+  background: #212225;
+}
+
+/* select */
+
+div.slt {
+  @include background-image(linear-gradient(white, #f1f5f8));
+  @include border-radius(5px);
+  @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1), inset 0 1px 0 0 #fff);
+  @include box-sizing;
+  border: 1px solid #101112;
+  cursor: pointer;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+  width: 240px;
+
+  div.arrows {
+    @include retina('../imgs/arrows','png');
+    height: 11px;
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    width: 7px;
+    z-index: 40;
+  }
+
+  select {
+    @include appearance;
+    background: transparent;
+    border: 0;
+    color: #576777;
+    cursor: pointer;
+    font-family: $fontCustom;
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    line-height: 17px;
+    margin: 0;
+    outline: none;
+    overflow: hidden;
+    padding: 6px 70px 20px 12px;
+    position: absolute;
+    right: -1px;
+    text-overflow: ellipse;
+    text-shadow: 0 1px 0 #fff;
+    top: -1px;
+    vertical-align: bottom;
+    white-space: nowrap;
+    width: 120%;
+    z-index: 50;
+
+    &:active, &:focus {
+      color: #576777;
+    }
+
+    /* opera hack */
+
+    @media (min-resolution: .001dpcm) {
+      padding-bottom: 11px;
+    }
+
+  }
+
 }
