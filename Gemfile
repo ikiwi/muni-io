@@ -1,14 +1,18 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
-# Database adapter
-gem 'sqlite3'
+group :development, :test do
+  # Database adapter
+  gem 'sqlite3'
+end
+
+group :production do
+  # Use postgresql as the database for Active Record
+  gem 'pg'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
-# Use postgresql as the database for Active Record
-gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
