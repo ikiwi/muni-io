@@ -1,21 +1,110 @@
-@import "bourbon";
 @import "reset";
 @import "helpers";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+$sectionWidth: 280px;
+$appHeight: 360px;
+$appWidth: ($sectionWidth*3) + (30px*2);
+
 $fontCustom: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* format */
+
+h1, h2, h3, h4, h5, h6 {
+  font: bold 18px $fontCustom;
+  text-shadow: 0 1px 0 rgba(black,0.9);
+}
+
+h2 {
+  font-size: 17px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 13px;
+}
 
 /* build */
 
 html {
-  background: #212225;
+  background: #1e2326;
   color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4em;
+}
+
+.wrapper {
+  height: $appHeight;
+  left: 50%;
+  margin: -($appHeight/2) 0 0 0 -($appWidth/2);
+  position: absolute;
+  top: 50%;
+  width: $appWidth;
+}
+
+/* schedule */
+
+.schedule {
+  @include border-radius(6px);
+  @include box-shadow(0 1px 0 0 rgba(white,0.1), inset 0 1px 1px 0 rgba(black,0.7));
+  background: #181c1e;
+  height: $appHeight;
+  width: 280px;
+
+  .title {
+    @include border-radius(6px 6px 0 0);
+    @include box-shadow(0 1px 0 0 rgba(black,0.05), inset 0 1px 0 0 rgba(white,0.1));
+    @include box-sizing;
+    @include gradient(#393e42, #1e2326);
+    border: 1px solid #111518;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    width: $sectionWidth;
+  }
+
+  &.inbound {
+    float: left;
+  }
+
+  &.outbound {
+    float: right;
+  }
+
+}
+
+/* center */
+
+.center {
+  float: left;
+  height: $appHeight;
+  margin-left: 30px;
+
+  .logo {
+    color: #f4c50b;
+    padding: 20px 0;
+    text-align: center;
+    width: 280px;
+  }
+
 }
 
 /* select */
 
 div.slt {
-  @include background-image(linear-gradient(white, #f1f5f8));
+  @include gradient(white, #f1f5f8);
   @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1), inset 0 1px 0 0 #fff);
   @include box-sizing;
   border: 1px solid #101112;

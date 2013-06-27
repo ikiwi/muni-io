@@ -9,12 +9,38 @@ $prefixes: "-webkit-", "-moz-", "-ms-", "-o-", "";
   }
 }
 
+/* border radius */
+
+@mixin border-radius($value...) {
+  @each $prefix in $prefixes {
+    #{$prefix}border-radius: $value;
+  }
+}
+
+/* box shadow */
+
+@mixin box-shadow($value...) {
+  @each $prefix in $prefixes {
+    #{$prefix}box-shadow: $value;
+  }
+}
+
 /* box sizing */
 
-@mixin box-sizing($type: border) {
-  box-sizing: #{$type}-box;
-  -webkit-box-sizing: #{$type}-box;
-  -moz-box-sizing: #{$type}-box;
+@mixin box-sizing($value: border) {
+  @each $prefix in $prefixes {
+    #{$prefix}box-sizing: #{$value}-box;
+  }
+}
+
+/* gradient */
+
+@mixin gradient($color...) {
+  background: $color;
+  @each $prefix in $prefixes {
+    background: #{$prefix}linear-gradient(top, #{$color});
+  }
+  background: linear-gradient(to bottom, $color);
 }
 
 /* retina */
