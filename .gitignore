@@ -17,3 +17,5 @@
 
 # Ignore the precompiled assets which is used for heroku
 /public/assets/*
+
+/sketch
