@@ -1,0 +1,101 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* appearance */
+/* box sizing */
+/* retina */
+/* build */
+html {
+  background: #212225;
+  color: white; }
+
+/* select */
+div.slt {
+  background-image: -webkit-linear-gradient( white, #f1f5f8);
+  background-image: linear-gradient( white, #f1f5f8);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 white;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #101112;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+  width: 240px; }
+  div.slt div.arrows {
+    background-image: url("../imgs/arrows.png");
+    height: 11px;
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    width: 7px;
+    z-index: 40; }
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+      div.slt div.arrows {
+        background-image: url("../imgs/arrows@2x.png");
+        -webkit-background-size: 100% 100%;
+        -moz-background-size: 100% 100%;
+        -o-background-size: 100% 100%;
+        background-size: 100% 100%; } }
+  div.slt select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #576777;
+    cursor: pointer;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    line-height: 17px;
+    margin: 0;
+    outline: none;
+    overflow: hidden;
+    padding: 6px 70px 20px 12px;
+    position: absolute;
+    right: -1px;
+    text-overflow: ellipse;
+    text-shadow: 0 1px 0 #fff;
+    top: -1px;
+    vertical-align: bottom;
+    white-space: nowrap;
+    width: 120%;
+    z-index: 50;
+    /* opera hack */ }
+    div.slt select:active, div.slt select:focus {
+      color: #576777; }
+    @media (min-resolution: 0.001dpcm) {
+      div.slt select {
+        padding-bottom: 11px; } }
