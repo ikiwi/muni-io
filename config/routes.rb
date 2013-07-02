@@ -1,4 +1,12 @@
 MuniIo::Application.routes.draw do
+  resources :line_items
+
+  resources :stops
+
+  resources :directions
+
+  resources :routes
+
   get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

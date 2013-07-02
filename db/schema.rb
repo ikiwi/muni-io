@@ -11,6 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20130702023642) do
+
+  create_table "directions", force: true do |t|
+    t.string   "d_id"
+    t.string   "string"
+    t.string   "d_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_items", force: true do |t|
+    t.integer  "route_id"
+    t.integer  "direction_id"
+    t.integer  "stop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "routes", force: true do |t|
+    t.string   "r_id"
+    t.string   "r_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stops", force: true do |t|
+    t.string   "s_id"
+    t.string   "s_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
