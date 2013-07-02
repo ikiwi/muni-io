@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130702023642) do
+ActiveRecord::Schema.define(version: 20130702025323) do
 
   create_table "directions", force: true do |t|
     t.string   "d_id"
-    t.string   "string"
     t.string   "d_desc"
     t.datetime "created_at"
     t.datetime "updated_at"

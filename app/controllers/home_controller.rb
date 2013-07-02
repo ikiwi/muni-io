@@ -4,6 +4,7 @@ require 'stringio'
 
 class HomeController < ApplicationController
   def index
+    @routes = Route.order(:r_id)
   end
 
   def show

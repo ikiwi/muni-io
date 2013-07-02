@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>D</th>
-      <th>String</th>
       <th>D desc</th>
       <th></th>
       <th></th>
@@ -16,7 +15,6 @@
     <% @directions.each do |direction| %>
       <tr>
         <td><%= direction.d_id %></td>
-        <td><%= direction.string %></td>
         <td><%= direction.d_desc %></td>
         <td><%= link_to 'Show', direction %></td>
         <td><%= link_to 'Edit', edit_direction_path(direction) %></td>

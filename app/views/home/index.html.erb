@@ -1,6 +1,11 @@
 <div class="wrapper">
   <div class="schedule inbound">
     <h4 class="title">Inbound</h4>
+    <% @routes.each do | route | %>
+    <ul>
+      <li><%= route.r_desc %></li>
+    </ul>
+    <% end %>
   </div>
   <div class="center">
     <h1 class="logo">MUNI Inbound Outbound</h1>
