@@ -37,18 +37,20 @@ class HomeController < ApplicationController
 
     # parse the string to get the numbers that we need
     pred = stdout.string.partition('<td class="predictionNumberForFirstPred">').last
-    pred = pred.partition('<div class="right">&nbsp;').last
-    @predictionNumberForFirstPred = pred.partition(' </div>').first
-    if (@predictionNumForFirstPred == '')
-      @predictionNumberForFirstPred = 'no predictions'  
+    if (pred == '')
+      @predictionNumberForFirstPred = 'no predictions'
+    else
+      pred = pred.partition('<div class="right">&nbsp;').last
+      @predictionNumberForFirstPred = pred.partition(' </div>').first
     end
 
     pred = pred.partition(' </div>').last
     pred = pred.partition('<td class="predictionNumberForOtherPreds">').last
-    pred = pred.partition('<div class="right">&nbsp;').last
-    @predictionNumberForOtherPred = pred.partition(' </div>').first
-    if (@predictionNumberForOtherPred =='')
+    if (pred == '')
       @predictionNumberForOtherPred = 'no other predictions'
+    else
+      pred = pred.partition('<div class="right">&nbsp;').last
+      @predictionNumberForOtherPred = pred.partition(' </div>').first
     end
   end
 end

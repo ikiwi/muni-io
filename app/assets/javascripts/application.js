@@ -19,6 +19,8 @@ $(document).ready(function() {
 	$('body').find('.schedule.outbound').find('.F').addClass('show');
 
 	$('#id_r_desc').change(function() {
+		$('#first').text("select");
+		$('#other').text("stop");
 		var id = $('#id_r_desc option:selected').val();
 			$('body').find('.schedule.inbound').find('li').removeClass('show');
 			$('body').find('.schedule.outbound').find('li').removeClass('show');
@@ -47,8 +49,18 @@ $(document).ready(function() {
         }).done(function(data) {
 			    var firstPred = $(data).filter('#first').text();
 			    var otherPred = $(data).filter('#other').text();
-			   	$('#first').text(firstPred);
-			   	$('#other').text(otherPred);
+			    if (firstPred.indexOf("no predictions") >= 0)
+				   	$('#first').text(firstPred);
+				else if (firstPred > 1)
+				   	$('#first').text(firstPred + "minutes");
+				else
+					$('#first').text(firstPred + "minute");
+			    if (otherPred.indexOf("no other predictions") >= 0)
+				   	$('#other').text(otherPred);
+				else if (firstPred > 1)
+				   	$('#other').text(otherPred + "minutes");
+				else
+					$('#other').text(otherPred + "minute");
         })
 	});
 
