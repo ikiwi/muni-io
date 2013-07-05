@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LineItemsControllerTest < ActionController::TestCase
   setup do
-    @ib_line_item = line_items(:one)
+    @line_item = line_items(:one)
   end
 
   test "should get index" do
@@ -16,32 +16,32 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create ib_line_item" do
+  test "should create line_item" do
     assert_difference('LineItem.count') do
-      post :create, ib_line_item: { direction_id: @ib_line_item.direction_id, route_id: @ib_line_item.route_id, stop_id: @ib_line_item.stop_id }
+      post :create, line_item: { direction_id: @line_item.direction_id, route_id: @line_item.route_id, stop_id: @line_item.stop_id }
     end
 
-    assert_redirected_to line_item_path(assigns(:ib_line_item))
+    assert_redirected_to line_item_path(assigns(:line_item))
   end
 
-  test "should show ib_line_item" do
-    get :show, id: @ib_line_item
+  test "should show line_item" do
+    get :show, id: @line_item
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @ib_line_item
+    get :edit, id: @line_item
     assert_response :success
   end
 
-  test "should update ib_line_item" do
-    patch :update, id: @ib_line_item, ib_line_item: { direction_id: @ib_line_item.direction_id, route_id: @ib_line_item.route_id, stop_id: @ib_line_item.stop_id }
-    assert_redirected_to line_item_path(assigns(:ib_line_item))
+  test "should update line_item" do
+    patch :update, id: @line_item, line_item: { direction_id: @line_item.direction_id, route_id: @line_item.route_id, stop_id: @line_item.stop_id }
+    assert_redirected_to line_item_path(assigns(:line_item))
   end
 
-  test "should destroy ib_line_item" do
+  test "should destroy line_item" do
     assert_difference('LineItem.count', -1) do
-      delete :destroy, id: @ib_line_item
+      delete :destroy, id: @line_item
     end
 
     assert_redirected_to line_items_path

@@ -4,7 +4,7 @@ class Route < ActiveRecord::Base
 
 	before_destroy :ensure_not_referenced_by_any_line_item
 
-	validates :r_id, :r_dec, :presence => true
+	validates :r_id, :r_desc, :presence => true
 
 	private
     # ensure that there are no line items referencing this product

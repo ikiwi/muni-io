@@ -15,22 +15,23 @@
 //= require turbolinks
 
 $(document).ready(function() {
-	$('body').find('.schedule.inbound').find('.F').addClass('show');
-	$('body').find('.schedule.outbound').find('.F').addClass('show');
+	$('body').find('.schedule.inbound').find('.1').addClass('show');
+	$('body').find('.schedule.outbound').find('.1').addClass('show');
 
 	$('#id_r_desc').change(function() {
+		var id = $('#id_r_desc option:selected').val();
+		var routes = ['F','J','KT','L','M','N','NX','1','1AX','1BX','2','3','5','6',
+					  '8X','8AX','8BX','9','9L','10','12','14','14L','14X','16X','17',
+					  '18','19','21','22','23','24','27','28','28L','29','30','30X',
+					  '31','31AX','31BX','33','35','36','37','38','38AX','38BX','38L',
+					  '39','71','71L','76X','81X','82X','83X','88','90','91','108',
+					  'K+OWL','L+OWL','M+OWL','N+OWL','T+OWL','59','60','61'];
 		$('#first').text("select");
 		$('#other').text("stop");
-		var id = $('#id_r_desc option:selected').val();
-			$('body').find('.schedule.inbound').find('li').removeClass('show');
-			$('body').find('.schedule.outbound').find('li').removeClass('show');
-		if (id == "1") {
-			$('body').find('.schedule.inbound').find('.F').addClass('show');
-			$('body').find('.schedule.outbound').find('.F').addClass('show');
-		} else if (id == "2") {
-			$('body').find('.schedule.inbound').find('.J').addClass('show');
-			$('body').find('.schedule.outbound').find('.J').addClass('show');
-		}
+		$('body').find('.schedule.inbound').find('li').removeClass('show');
+		$('body').find('.schedule.outbound').find('li').removeClass('show');
+		$('body').find('.schedule.inbound').find('.' + routes[id-1]).addClass('show');
+		$('body').find('.schedule.outbound').find('.' + routes[id-1]).addClass('show');
 	});
 
 	$('li').on('click', function() {

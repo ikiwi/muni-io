@@ -14,7 +14,7 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/new
   def new
-    @ib_line_item = LineItem.new
+    @line_item = LineItem.new
   end
 
   # GET /line_items/1/edit
@@ -24,15 +24,15 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @ib_line_item = LineItem.new(line_item_params)
+    @line_item = LineItem.new(line_item_params)
 
     respond_to do |format|
-      if @ib_line_item.save
-        format.html { redirect_to @ib_line_item, notice: 'Line item was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @ib_line_item }
+      if @line_item.save
+        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @line_item }
       else
         format.html { render action: 'new' }
-        format.json { render json: @ib_line_item.errors, status: :unprocessable_entity }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +41,12 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1.json
   def update
     respond_to do |format|
-      if @ib_line_item.update(line_item_params)
-        format.html { redirect_to @ib_line_item, notice: 'Line item was successfully updated.' }
+      if @line_item.update(line_item_params)
+        format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @ib_line_item.errors, status: :unprocessable_entity }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +54,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @ib_line_item.destroy
+    @line_item.destroy
     respond_to do |format|
       format.html { redirect_to line_items_url }
       format.json { head :no_content }
@@ -64,11 +64,11 @@ class LineItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
-      @ib_line_item = LineItem.find(params[:id])
+      @line_item = LineItem.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:ib_line_item).permit(:route_id, :direction_id, :stop_id)
+      params.require(:line_item).permit(:route_id, :direction_id, :stop_id)
     end
 end

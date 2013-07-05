@@ -17,9 +17,6 @@ class HomeController < ApplicationController
   def show
     stdout = StringIO.new
     $stdout = stdout
-#    @route = 'F'
-#    @direction = 'F__OBCTRO'
-#    @stop = '3095'
     @ts = ''
     @route = params[:route]
     @direction = params[:direction]
