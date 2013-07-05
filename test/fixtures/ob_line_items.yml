@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  route_id: MyString
+  direction_id: MyString
+  stop_id: MyString
+
+two:
+  route_id: MyString
+  direction_id: MyString
+  stop_id: MyString

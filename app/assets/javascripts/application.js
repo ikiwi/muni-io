@@ -13,3 +13,51 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+$(document).ready(function() {
+	$('body').find('.schedule.inbound').find('.F').addClass('show');
+	$('body').find('.schedule.outbound').find('.F').addClass('show');
+
+	$('#id_r_desc').change(function() {
+		var id = $('#id_r_desc option:selected').val();
+			$('body').find('.schedule.inbound').find('li').removeClass('show');
+			$('body').find('.schedule.outbound').find('li').removeClass('show');
+		if (id == "1") {
+			$('body').find('.schedule.inbound').find('.F').addClass('show');
+			$('body').find('.schedule.outbound').find('.F').addClass('show');
+		} else if (id == "2") {
+			$('body').find('.schedule.inbound').find('.J').addClass('show');
+			$('body').find('.schedule.outbound').find('.J').addClass('show');
+		}
+	});
+
+	$('li').on('click', function() {
+		var route = $(this).data('route');
+		var direction = $(this).data('direction');
+		var stop = $(this).data('stop');
+
+        $.ajax({
+            url: '/home/show',
+            type: 'GET',
+            data: {
+                route : $(this).data('route'), 
+                direction : $(this).data('direction'),
+                stop : $(this).data('stop')
+            }
+        }).done(function(data) {
+			    var firstPred = $(data).filter('#first').text();
+			    var otherPred = $(data).filter('#other').text();
+			   	$('#first').text(firstPred);
+			   	$('#other').text(otherPred);
+        })
+	});
+
+//	$('#id_r_desc').change(function() {
+
+//		$('option[value="1"]').on('selected', function() {
+//			$('body').find('.schedule.inbound').find('.F').css('display', 'block');
+//		});
+
+//	});
+
+});

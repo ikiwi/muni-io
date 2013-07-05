@@ -3,8 +3,11 @@
 <table>
   <thead>
     <tr>
-      <th>D</th>
-      <th>D desc</th>
+      <th>Route ID | </th>
+      <th>Inbound ID | </th>
+      <th>Inbound description | </th>
+      <th>Outbound ID | </th>
+      <th>Outbound description</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,8 +17,11 @@
   <tbody>
     <% @directions.each do |direction| %>
       <tr>
-        <td><%= direction.d_id %></td>
-        <td><%= direction.d_desc %></td>
+        <td><%= direction.r_id %></td>
+        <td><%= direction.ib_id %></td>
+        <td><%= direction.ib_desc %></td>
+        <td><%= direction.ob_id %></td>
+        <td><%= direction.ob_desc %></td>
         <td><%= link_to 'Show', direction %></td>
         <td><%= link_to 'Edit', edit_direction_path(direction) %></td>
         <td><%= link_to 'Destroy', direction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

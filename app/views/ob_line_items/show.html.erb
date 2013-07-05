@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @ob_line_item.route_id %>
+</p>
+
+<p>
+  <strong>Direction:</strong>
+  <%= @ob_line_item.direction_id %>
+</p>
+
+<p>
+  <strong>Stop:</strong>
+  <%= @ob_line_item.stop_id %>
+</p>
+
+<%= link_to 'Edit', edit_ob_line_item_path(@ob_line_item) %> |
+<%= link_to 'Back', ob_line_items_path %>

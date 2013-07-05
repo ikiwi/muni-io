@@ -5,15 +5,25 @@ require 'stringio'
 class HomeController < ApplicationController
   def index
     @routes = Route.order(:r_id)
+    @stops = Stop.order(:s_id)
+    @ib_lines = LineItem.order(:route_id)
+    @ob_lines = ObLineItem.order(:route_id)
+  end
+
+  def get_stop_desc(stop_id)
+    Stop.find_by_s_id(stop_id)
   end
 
   def show
     stdout = StringIO.new
     $stdout = stdout
-    @route = 'F'
-    @direction = 'F__OBCTRO'
-    @stop = '3095'
+#    @route = 'F'
+#    @direction = 'F__OBCTRO'
+#    @stop = '3095'
     @ts = ''
+    @route = params[:route]
+    @direction = params[:direction]
+    @stop = params[:stop]
 
     # get the data
   	@url = 'http://www.nextbus.com/predictor/fancyNewPredictionLayer.jsp?a=sf-muni&r='\
@@ -31,11 +41,6 @@ class HomeController < ApplicationController
     @predictionNumberForFirstPred = pred.partition(' </div>').first
     if (@predictionNumForFirstPred == '')
       @predictionNumberForFirstPred = 'no predictions'  
-    else    
-      @predictionNumberForFirstPred = @predictionNumberForFirstPred + 'minute'
-      if (@predictionNumberForFirstPred.to_i > 1)
-        @predictionNumberForFirstPred = @predictionNumberForFirstPred + 's'
-      end
     end
 
     pred = pred.partition(' </div>').last
@@ -44,11 +49,6 @@ class HomeController < ApplicationController
     @predictionNumberForOtherPred = pred.partition(' </div>').first
     if (@predictionNumberForOtherPred =='')
       @predictionNumberForOtherPred = 'no other predictions'
-    else
-      @predictionNumberForOtherPred = @predictionNumberForOtherPred + 'minute'
-      if (@predictionNumberForOtherPred.to_i > 1)
-        @predictionNumberForOtherPred = @predictionNumberForOtherPred + 's'
-      end
     end
   end
 end

@@ -1,17 +1,37 @@
 <div class="wrapper">
   <div class="schedule inbound">
     <h4 class="title">Inbound</h4>
-    <% @routes.each do | route | %>
-    <ul>
-      <li><%= route.r_desc %></li>
-    </ul>
+    <ul class="stops">
+    <% @ib_lines.each do | line | %>
+      <li class="<%= line.route_id %>" 
+          data-route="<%= line.route_id %>" 
+          data-direction="<%= line.direction_id %>" 
+          data-stop="<%= line.stop_id %>">
+            <%= controller.get_stop_desc(line.stop_id).s_desc %>
+      </li>
     <% end %>
+    </ul>
   </div>
   <div class="center">
     <h1 class="logo">MUNI Inbound Outbound</h1>
+    <span id="first">No prediction</span> + 
+    <span id="other">No prediction</span>
+    <div class="route">
+      <div class="select">
+        <div class="anchor">
+          <p class="selected"></p>
+        </div>
+      </div>
+      <%= collection_select(:id, :r_desc, @routes.all, :id, :r_desc) %>
+    </div>
   </div>
   <div class="schedule outbound">
     <h4 class="title">Outbound</h4>
+    <ul class="stops">
+      <% @ob_lines.each do | line | %>
+        <li class="<%= line.route_id %>"><%= controller.get_stop_desc(line.stop_id).s_desc %></li>
+      <% end %>
+    </ul>
   </div>
   <%= link_to 'Nextbus', nextbus_home_path(@home) %>
 </div>

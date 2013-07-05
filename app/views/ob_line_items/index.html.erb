@@ -1,0 +1,31 @@
+<h1>Listing ob_line_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Route</th>
+      <th>Direction</th>
+      <th>Stop</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ob_line_items.each do |ob_line_item| %>
+      <tr>
+        <td><%= ob_line_item.route_id %></td>
+        <td><%= ob_line_item.direction_id %></td>
+        <td><%= ob_line_item.stop_id %></td>
+        <td><%= link_to 'Show', ob_line_item %></td>
+        <td><%= link_to 'Edit', edit_ob_line_item_path(ob_line_item) %></td>
+        <td><%= link_to 'Destroy', ob_line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ob line item', new_ob_line_item_path %>

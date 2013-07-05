@@ -1,4 +1,6 @@
 MuniIo::Application.routes.draw do
+  resources :ob_line_items
+
   resources :line_items
 
   resources :stops

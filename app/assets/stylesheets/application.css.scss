@@ -75,6 +75,15 @@ html {
     width: $sectionWidth;
   }
 
+  .stops li {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+
+  }
+
   &.inbound {
     float: left;
   }

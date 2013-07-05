@@ -1,7 +1,7 @@
 class Direction < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
 
-	validates :d_id, :d_desc, :presence => true
+	validates :r_id, :ib_id, :ib_desc, :ob_id, :ob_desc, :presence => true
 
 private
   def direction_params
