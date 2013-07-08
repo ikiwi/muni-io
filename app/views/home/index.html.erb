@@ -29,7 +29,12 @@
     <h4 class="title">Outbound</h4>
     <ul class="stops">
       <% @ob_lines.each do | line | %>
-        <li class="<%= line.route_id %>"><%= controller.get_stop_desc(line.stop_id).s_desc %></li>
+      <li class="<%= line.route_id %>" 
+          data-route="<%= line.route_id %>" 
+          data-direction="<%= line.direction_id %>" 
+          data-stop="<%= line.stop_id %>">
+            <%= controller.get_stop_desc(line.stop_id).s_desc %>
+      </li>
       <% end %>
     </ul>
   </div>

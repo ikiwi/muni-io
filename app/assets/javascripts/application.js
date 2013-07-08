@@ -15,8 +15,8 @@
 //= require turbolinks
 
 $(document).ready(function() {
-	$('body').find('.schedule.inbound').find('.1').addClass('show');
-	$('body').find('.schedule.outbound').find('.1').addClass('show');
+	$('body').find('.schedule.inbound').find('.F').addClass('show');
+	$('body').find('.schedule.outbound').find('.F').addClass('show');
 
 	$('#id_r_desc').change(function() {
 		var id = $('#id_r_desc option:selected').val();
