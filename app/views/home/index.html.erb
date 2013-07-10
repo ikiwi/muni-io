@@ -14,8 +14,11 @@
   </div>
   <div class="center">
     <h1 class="logo">MUNI Inbound Outbound</h1>
-    <span id="first">select</span>
-    <span id="other">route</span>
+    <span class="first inbound">inbound</span>
+    <span class="other inbound"></span>
+    <br>
+    <span class="first outbound">outbound</span>
+    <span class="other outbound"></span>
     <div class="route">
       <div class="select">
         <div class="anchor">
@@ -38,5 +41,4 @@
       <% end %>
     </ul>
   </div>
-  <%= link_to 'Nextbus', nextbus_home_path(@home) %>
 </div>

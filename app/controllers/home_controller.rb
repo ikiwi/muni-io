@@ -22,6 +22,7 @@ class HomeController < ApplicationController
     @direction = params[:direction]
     @stop = params[:stop]
 
+    @route = @route.sub("_OWL", "+OWL")
     # get the data
   	@url = 'http://www.nextbus.com/predictor/fancyNewPredictionLayer.jsp?a=sf-muni&r='\
            + @route + '&d=' + @direction + '&s=' + @stop + '&ts=' + @ts
@@ -33,18 +34,22 @@ class HomeController < ApplicationController
     stdout.rewind
 
     # parse the string to get the numbers that we need
-    pred = stdout.string.partition('<td class="predictionNumberForFirstPred">').last
+    pred = stdout.string.partition('class="predictionNumberForFirstPred">').last
     if (pred == '')
       @predictionNumberForFirstPred = 'no predictions'
+    elsif (pred == 'Arriving')
+      @predictionNumberForFirstPred = 'Arriving'
     else
       pred = pred.partition('<div class="right">&nbsp;').last
       @predictionNumberForFirstPred = pred.partition(' </div>').first
     end
 
     pred = pred.partition(' </div>').last
-    pred = pred.partition('<td class="predictionNumberForOtherPreds">').last
+    pred = pred.partition('class="predictionNumberForOtherPreds">').last
     if (pred == '')
       @predictionNumberForOtherPred = 'no other predictions'
+    elsif (pred == 'Arriving')
+      @predictionNumberForOtherPred = 'Arriving'
     else
       pred = pred.partition('<div class="right">&nbsp;').last
       @predictionNumberForOtherPred = pred.partition(' </div>').first
