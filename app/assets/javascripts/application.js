@@ -25,7 +25,7 @@ $(document).ready(function() {
 					  '18','19','21','22','23','24','27','28','28L','29','30','30X',
 					  '31','31AX','31BX','33','35','36','37','38','38AX','38BX','38L',
 					  '39','71','71L','76X','81X','82X','83X','88','90','91','108',
-					  'K+OWL','L+OWL','M+OWL','N+OWL','T+OWL','59','60','61'];
+					  'K_OWL','L_OWL','M_OWL','N_OWL','', 'T_OWL', '59','60','61'];
 		$('#first').text("select");
 		$('#other').text("stop");
 		$('body').find('.schedule.inbound').find('li').removeClass('show');

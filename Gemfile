@@ -6,6 +6,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'taps'
+
 group :production do
   # Use postgresql as the database for Active Record
   gem 'pg'
