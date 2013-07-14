@@ -5,9 +5,18 @@ require 'stringio'
 class HomeController < ApplicationController
   def index
     @routes = Route.order(:r_id)
-    @stops = Stop.order(:s_id)
     @ib_lines = LineItem.order(:route_id)
     @ob_lines = ObLineItem.order(:route_id)
+#@ib_lines = LineItem.find_all_by_route_id('1')
+#@ob_lines = ObLineItem.find_all_by_route_id('1')
+  end
+
+  def get_ib_items
+    @ib_lines = LineItem.find_all_by_route_id(params[:route])
+  end
+
+  def get_ob_items
+    @ob_lines = ObLineItem.find_all_by_route_id(params[:route])
   end
 
   def get_stop_desc(stop_id)

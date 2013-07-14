@@ -17,9 +17,15 @@ MuniIo::Application.routes.draw do
   root 'home#index'
 
   resources :home do
+    collection do
+      get 'get_ib_items'
+      get 'get_ob_items'
+    end
+
     member do
-      get 'nextbus'
-      end
+      get 'get_ib_items'
+      get 'get_ob_items'
+    end
   end
 
 
