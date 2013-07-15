@@ -15,9 +15,6 @@
 //= require turbolinks
 
 $(document).ready(function() {
-	$('body').find('.schedule.inbound').find('.1').addClass('show');
-	$('body').find('.schedule.outbound').find('.1').addClass('show');
-
 	$('#id_r_desc').change(function() {
 		var id = $('#id_r_desc option:selected').val()-1;
 		var routes = ['F','J','KT','L','M','N','NX','1','1AX','1BX','2','3','5','6',

@@ -5,10 +5,8 @@ require 'stringio'
 class HomeController < ApplicationController
   def index
     @routes = Route.order(:r_id)
-    @ib_lines = LineItem.order(:route_id)
-    @ob_lines = ObLineItem.order(:route_id)
-#@ib_lines = LineItem.find_all_by_route_id('1')
-#@ob_lines = ObLineItem.find_all_by_route_id('1')
+    @ib_lines = LineItem.find_all_by_route_id('1')
+    @ob_lines = ObLineItem.find_all_by_route_id('1')
   end
 
   def get_ib_items

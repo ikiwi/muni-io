@@ -2,10 +2,19 @@
   <div class="schedule inbound">
     <h4 class="title">Inbound</h4>
     <ul class="stops inbound">
+    <% @ib_lines.each do | line | %>
+      <li class="<%= line.route_id %> show" 
+          data-route="<%= line.route_id %>" 
+          data-direction="<%= line.direction_id %>" 
+          data-stop="<%= line.stop_id %>">
+            <%= controller.get_stop_desc(line.stop_id).s_desc %>
+      </li>
+    <% end %>
     </ul>
   </div>
   <div class="center">
     <h1 class="logo">MUNI Inbound Outbound</h1>
+    <span class="route"></span>
     <span class="first inbound">inbound</span>
     <span class="other inbound"></span>
     <br>
@@ -23,6 +32,14 @@
   <div class="schedule outbound">
     <h4 class="title">Outbound</h4>
     <ul class="stops outbound">
+      <% @ob_lines.each do | line | %>
+      <li class="<%= line.route_id %> show" 
+          data-route="<%= line.route_id %>" 
+          data-direction="<%= line.direction_id %>" 
+          data-stop="<%= line.stop_id %>">
+            <%= controller.get_stop_desc(line.stop_id).s_desc %>
+      </li>
+      <% end %>
     </ul>
   </div>
 </div>
