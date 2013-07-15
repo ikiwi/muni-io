@@ -30,140 +30,193 @@ $(document).ready(function() {
 		$('body').find('.schedule.inbound').find('li').removeClass('show');
 		$('body').find('.schedule.outbound').find('li').removeClass('show');
 
-        $.ajax({
-            url: '/home/get_ob_items',
-            type: 'GET',
-            data: {
-                route : routes[id],
-            }
-        }).done(function(data) {
-        	var tmp = $('body').find('.stops.outbound').find('.' + routes[id])
+    $.ajax({
+      url: '/home/get_ob_items',
+      type: 'GET',
+      data: {
+        route : routes[id],
+      }
+    }).done(function(data) {
+      var tmp = $('body').find('.stops.outbound').find('.' + routes[id])
 			if (tmp.data('route')) {
 				$('body').find('.stops.outbound').find('.' + routes[id]).addClass('show');
 			} else {
-	        	var route = $(data).find('.' + routes[id])
+        var route = $(data).find('.' + routes[id])
 				var direction_id = route.data('direction');
 				var stop_id = route.data('stop')
 				var stop_desc = route.data('desc');
 
-	        	$.each(route, function() {
-	        		var stop_id = route.data('stop')
-	        		var stop_desc = route.data('desc')
-		        	var li = $('<li/>')
-		    		.addClass(routes[id])
-		    		.addClass('show')
-		    		.attr('data-route', routes[id])
-		    		.attr('data-direction', direction_id)
-		    		.attr('data-stop', stop_id)
-		    		.text(stop_desc)
-		    		.appendTo($('.stops.outbound'))
-		    		route = route.next()
-	        	})
-	        }
-    	})
-
-        $.ajax({
-            url: '/home/get_ib_items',
-            type: 'GET',
-            data: {
-                route : routes[id],
-            }
-        }).done(function(data) {
-        	var tmp = $('body').find('.stops.inbound').find('.' + routes[id])
-			if (tmp.data('route')) {
-				$('body').find('.stops.inbound').find('.' + routes[id]).addClass('show');
-			} else {
-	        	var route = $(data).find('.' + routes[id])
-				var direction_id = $(data).find('.' + routes[id]).data('direction');
-				var stop_id = $(data).find('.' + routes[id]).data('stop');
-				var stop_desc = $(data).find('.' + routes[id]).data('desc');
-
-	        	$.each(route, function() {
-	        		var stop_id = route.data('stop')
-	        		var stop_desc = route.data('desc')
-		        	var li = $('<li/>')
-		    		.addClass(routes[id])
-		    		.addClass('show')
-		    		.attr('data-route', routes[id])
-		    		.attr('data-direction', direction_id)
-		    		.attr('data-stop', stop_id)
-		    		.text(stop_desc)
-		    		.appendTo($('.stops.inbound'))
-		    		route = route.next()
-	        	})
-	        }
+      	$.each(route, function() {
+      		var stop_id = route.data('stop')
+      		var stop_desc = route.data('desc')
+        	var li = $('<li/>')
+        		.addClass(routes[id])
+        		.addClass('show')
+        		.attr('data-route', routes[id])
+        		.attr('data-direction', direction_id)
+        		.attr('data-stop', stop_id)
+        		.text(stop_desc)
+        		.appendTo($('.stops.outbound'))
+        		route = route.next()
         })
+      } //else
+    }) //ajax
+
+    $.ajax({
+      url: '/home/get_ib_items',
+      type: 'GET',
+      data: {
+              route : routes[id],
+      }
+    }).done(function(data) {
+      var tmp = $('body').find('.stops.inbound').find('.' + routes[id])
+  		if (tmp.data('route')) {
+  			$('body').find('.stops.inbound').find('.' + routes[id]).addClass('show');
+  		} else {
+        var route = $(data).find('.' + routes[id])
+  			var direction_id = $(data).find('.' + routes[id]).data('direction');
+  			var stop_id = $(data).find('.' + routes[id]).data('stop');
+  			var stop_desc = $(data).find('.' + routes[id]).data('desc');
+
+        $.each(route, function() {
+          var stop_id = route.data('stop')
+          var stop_desc = route.data('desc')
+          var li = $('<li/>')
+  	    		.addClass(routes[id])
+  	    		.addClass('show')
+  	    		.attr('data-route', routes[id])
+  	    		.attr('data-direction', direction_id)
+  	    		.attr('data-stop', stop_id)
+  	    		.text(stop_desc)
+  	    		.appendTo($('.stops.inbound'))
+  	    		route = route.next()
+        })
+      } //else
+    }) //ajax
 
 		$('body').find('.schedule.inbound').find('.' + routes[id]).addClass('show');
 		$('body').find('.schedule.outbound').find('.' + routes[id]).addClass('show');
 
-	});
+    $('.stops').delegate('li', 'click', function() {
+      $(this).parent('ul').find('li').removeClass('selected');
+      $(this).addClass('selected');
+    });
 
-	$('li').on('click', function() {
-		$(this).parent('ul').find('li').removeClass('selected');
-		$(this).addClass('selected');
-	});
+    $('.stops.outbound').delegate('li', 'click', function() {
+      $.ajax({
+          url: '/home/show',
+          type: 'GET',
+          data: {
+              route : $(this).data('route'),
+              direction : $(this).data('direction'),
+              stop : $(this).data('stop')
+          }
+      }).done(function(data) {
+		    var firstPred = $(data).filter('#first').text();
+		    var otherPred = $(data).filter('#other').text();
+		    if (firstPred.indexOf("no predictions") >= 0 || firstPred.indexOf("Arriving") >= 0)
+			   	$('.first.outbound').text(firstPred);
+			  else if (firstPred > 1)
+			   	$('.first.outbound').text(firstPred + "minutes");
+			  else
+          $('.first.outbound').text(firstPred + "minute");
+		    if (otherPred.indexOf("no other predictions") >= 0 || otherPred.indexOf("Arriving") >= 0)
+			   	$('.other.outbound').text(otherPred);
+			  else if (firstPred > 1)
+			   	$('.other.outbound').text("[alt routes" + otherPred + "minutes]");
+			  else
+          $('.other.outbound').text("[alt routes" + otherPred + "minute]");
+      }) //ajax
+  	}); //delegate
 
-	$('.outbound li').on('click', function() {
-        $.ajax({
-            url: '/home/show',
-            type: 'GET',
-            data: {
-                route : $(this).data('route'), 
-                direction : $(this).data('direction'),
-                stop : $(this).data('stop')
-            }
-        }).done(function(data) {
-			    var firstPred = $(data).filter('#first').text();
-			    var otherPred = $(data).filter('#other').text();
-			    if (firstPred.indexOf("no predictions") >= 0 || firstPred.indexOf("Arriving") >= 0)
-				   	$('.first.outbound').text(firstPred);
-				else if (firstPred > 1)
-				   	$('.first.outbound').text(firstPred + "minutes");
-				else
-					$('.first.outbound').text(firstPred + "minute");
-			    if (otherPred.indexOf("no other predictions") >= 0 || otherPred.indexOf("Arriving") >= 0)
-				   	$('.other.outbound').text(otherPred);
-				else if (firstPred > 1)
-				   	$('.other.outbound').text("[alt routes" + otherPred + "minutes]");
-				else
-					$('.other.outbound').text("[alt routes" + otherPred + "minute]");
-        })
-	});
+  	$('.stops.inbound').delegate('li', 'click', function() {
+      $.ajax({
+          url: '/home/show',
+          type: 'GET',
+          data: {
+              route : $(this).data('route'),
+              direction : $(this).data('direction'),
+              stop : $(this).data('stop')
+          }
+      }).done(function(data) {
+		    var firstPred = $(data).filter('#first').text();
+		    var otherPred = $(data).filter('#other').text();
+		    if (firstPred.indexOf("no predictions") >= 0 || firstPred.indexOf("Arriving") >= 0)
+			   	$('.first.inbound').text(firstPred);
+			  else if (firstPred > 1)
+			   	$('.first.inbound').text(firstPred + "minutes");
+			  else
+          $('.first.inbound').text(firstPred + "minute");
 
-	$('.inbound li').on('click', function() {
-        $.ajax({
-            url: '/home/show',
-            type: 'GET',
-            data: {
-                route : $(this).data('route'), 
-                direction : $(this).data('direction'),
-                stop : $(this).data('stop')
-            }
-        }).done(function(data) {
-			    var firstPred = $(data).filter('#first').text();
-			    var otherPred = $(data).filter('#other').text();
-			    if (firstPred.indexOf("no predictions") >= 0 || firstPred.indexOf("Arriving") >= 0)
-				   	$('.first.inbound').text(firstPred);
-				else if (firstPred > 1)
-				   	$('.first.inbound').text(firstPred + "minutes");
-				else
-					$('.first.inbound').text(firstPred + "minute");
+		    if (otherPred.indexOf("no other predictions") >= 0 || otherPred.indexOf("Arriving") >= 0)
+			   	$('.other.inbound').text(otherPred);
+			  else if (firstPred > 1)
+			   	$('.other.inbound').text("[alt routes" + otherPred + "minutes]");
+			  else
+          $('.other.inbound').text("[alt routes" + otherPred + "minute]");
+      }) //ajax
+  	}); //delegate
+  }); //change
 
-			    if (otherPred.indexOf("no other predictions") >= 0 || otherPred.indexOf("Arriving") >= 0)
-				   	$('.other.inbound').text(otherPred);
-				else if (firstPred > 1)
-				   	$('.other.inbound').text("[alt routes" + otherPred + "minutes]");
-				else
-					$('.other.inbound').text("[alt routes" + otherPred + "minute]");
-        })
-	});
-//	$('#id_r_desc').change(function() {
+  $('li').on('click', function() {
+    $(this).parent('ul').find('li').removeClass('selected');
+    $(this).addClass('selected');
 
-//		$('option[value="1"]').on('selected', function() {
-//			$('body').find('.schedule.inbound').find('.F').css('display', 'block');
-//		});
+  });
 
-//	});
+  $('.outbound li').on('click', function() {
+    $.ajax({
+        url: '/home/show',
+        type: 'GET',
+        data: {
+            route : $(this).data('route'),
+            direction : $(this).data('direction'),
+            stop : $(this).data('stop')
+        }
+    }).done(function(data) {
+      var firstPred = $(data).filter('#first').text();
+      var otherPred = $(data).filter('#other').text();
+      if (firstPred.indexOf("no predictions") >= 0 || firstPred.indexOf("Arriving") >= 0)
+        $('.first.outbound').text(firstPred);
+      else if (firstPred > 1)
+        $('.first.outbound').text(firstPred + "minutes");
+      else
+        $('.first.outbound').text(firstPred + "minute");
+      if (otherPred.indexOf("no other predictions") >= 0 || otherPred.indexOf("Arriving") >= 0)
+        $('.other.outbound').text(otherPred);
+      else if (firstPred > 1)
+        $('.other.outbound').text("[alt routes" + otherPred + "minutes]");
+      else
+        $('.other.outbound').text("[alt routes" + otherPred + "minute]");
+    }) //ajax
+  });
 
-});
+  $('.inbound li').on('click', function() {
+    $.ajax({
+        url: '/home/show',
+        type: 'GET',
+        data: {
+            route : $(this).data('route'),
+            direction : $(this).data('direction'),
+            stop : $(this).data('stop')
+        }
+    }).done(function(data) {
+      var firstPred = $(data).filter('#first').text();
+      var otherPred = $(data).filter('#other').text();
+      if (firstPred.indexOf("no predictions") >= 0 || firstPred.indexOf("Arriving") >= 0)
+        $('.first.inbound').text(firstPred);
+      else if (firstPred > 1)
+        $('.first.inbound').text(firstPred + "minutes");
+      else
+        $('.first.inbound').text(firstPred + "minute");
+
+      if (otherPred.indexOf("no other predictions") >= 0 || otherPred.indexOf("Arriving") >= 0)
+        $('.other.inbound').text(otherPred);
+      else if (firstPred > 1)
+        $('.other.inbound').text("[alt routes" + otherPred + "minutes]");
+      else
+        $('.other.inbound').text("[alt routes" + otherPred + "minute]");
+    }) //ajax
+  });
+
+}); //ready
